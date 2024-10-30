@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
+import Product from "../Product";
 
 function HomeScreen() {
   const [products, setProducts] = useState([]);
@@ -11,6 +12,7 @@ function HomeScreen() {
       .get("http://127.0.0.1:8000/api/products/")
       .then((response) => {
         setProducts(response.data);
+        console.log(response.data)
       })
       .catch((err) => {
         console.log(err.message);
@@ -24,14 +26,7 @@ function HomeScreen() {
       <Row>
         {products?.map((product) => (
           <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-            <Card className="my-3 p-3 rounded">
-            <img src={product.image} alt={product.name} />
-            </Card>
-            
-            <h3>{product.name}</h3>
-            <h6>{product.category}</h6>
-            <p>{product.price}</p>
-            <p>{product.info}</p>
+           <Product product={product}/>
           </Col>
         ))}
       </Row>

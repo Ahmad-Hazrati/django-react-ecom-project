@@ -26,7 +26,7 @@ const NavBar = () => {
             <li className="nav-item">
               <LinkContainer to="/">
                 <Nav.Link className="nav-link active">
-                  Home
+                  Home <i className="fa-solid fa-house"></i>
                   <span className="visually-hidden">(current)</span>
                 </Nav.Link>
               </LinkContainer>
