@@ -1,12 +1,15 @@
 import React from "react";
+import { LinkContainer } from "react-router-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 
-const Navbar = () => {
+const NavBar = () => {
   return (
-    <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+    <Navbar className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          Ecommerce Cart
-        </a>
+        <LinkContainer to="/">
+          <Nav.Link className="navbar-brand">Ecommerce Cart</Nav.Link>
+        </LinkContainer>
+
         <button
           className="navbar-toggler"
           type="button"
@@ -21,51 +24,40 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarColor02">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <a className="nav-link active" href="#">
-                Home
-                <span className="visually-hidden">(current)</span>
-              </a>
+              <LinkContainer to="/">
+                <Nav.Link className="nav-link active">
+                  Home
+                  <span className="visually-hidden">(current)</span>
+                </Nav.Link>
+              </LinkContainer>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Features
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Pricing
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                About
-              </a>
+              <LinkContainer to="/cart">
+                <Nav.Link className="nav-link">Cart</Nav.Link>
+              </LinkContainer>
             </li>
             <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                data-bs-toggle="dropdown"
-                href="#"
-                role="button"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Dropdown
-              </a>
+              <LinkContainer to="/signup">
+                <Nav.Link
+                  className="nav-link dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  role="button"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  New User
+                </Nav.Link>
+              </LinkContainer>
+
               <div className="dropdown-menu">
-                <a className="dropdown-item" href="#">
-                  Action
-                </a>
-                <a className="dropdown-item" href="#">
-                  Another action
-                </a>
-                <a className="dropdown-item" href="#">
-                  Something else here
-                </a>
+                <LinkContainer to="/login">
+                  <Nav.Link className="dropdown-item">Login</Nav.Link>
+                </LinkContainer>
+
                 <div className="dropdown-divider"></div>
-                <a className="dropdown-item" href="#">
-                  Separated link
-                </a>
+                <LinkContainer to="/logout">
+                  <Nav.Link className="dropdown-item">Logout</Nav.Link>
+                </LinkContainer>
               </div>
             </li>
           </ul>
@@ -81,8 +73,8 @@ const Navbar = () => {
           </form>
         </div>
       </div>
-    </nav>
+    </Navbar>
   );
 };
 
-export default Navbar;
+export default NavBar;
