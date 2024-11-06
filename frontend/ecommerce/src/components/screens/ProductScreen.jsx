@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Col, Container, Row, Image, ListGroup, Card, Button } from "react-bootstrap";
+import {
+  Col,
+  Container,
+  Row,
+  Image,
+  ListGroup,
+  Card,
+  Button,
+} from "react-bootstrap";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import Rating from "../Rating";
@@ -9,22 +17,32 @@ function ProductScreen({ params }) {
   const [product, setProduct] = useState([]);
   const { id } = useParams();
 
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://127.0.0.1:8000/api/products/${id}`)
+  //     .then((response) => {
+  //       setProduct(response.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.message);
+  //     });
+  // }, []);
+
   useEffect(() => {
-    axios
-      .get(`http://127.0.0.1:8000/api/products/${id}`)
-      .then((response) => {
-        setProduct(response.data);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+    async function fetchProduct() {
+      const { data } = await axios.get(`http://127.0.0.1:8000/api/products/${id}`);
+      setProduct(data);
+    }
+    fetchProduct();
   }, []);
+
   return (
     <Container>
       <div>
         <Link to="/" className="btn btn-dark- my-3">
           Go Back
         </Link>
+
         <Row>
           <Col md={6}>
             <Image src={product.image} alt={product.name} fluid />
